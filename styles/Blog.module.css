@@ -1,0 +1,12 @@
+.article-item {
+  width: 100%;
+  min-height: 120px;
+  
+}
+.title {
+    font-size: 1.6em;
+    margin-bottom: .6em;
+  }
+.desc {
+  line-height: 1.8em;
+}
