@@ -1,4 +1,4 @@
-import styles from '../styles/Blog.module.css'
+import { Container, Tag, Box } from "@chakra-ui/react"
 import fs from 'fs'
 import Link from 'next/link'
 import {join} from 'path'
@@ -18,32 +18,42 @@ export async function getStaticProps() {
 
 const BlogPage = (props: any) =>{
   return (
-    <div className="blog">
-      <div className="container">
+    <Box minH="850px">
+      <Container display="flex" justifyContent="space-between" p="2em 0">
+        <Box w="68%" display="flex" flexWrap="wrap" justifyContent="space-between">
+          <Box className="title" pb="1em"  w="100%">Articles</Box>
         {
-          props.metaPosts.map ((item:any) => {
+          props.metaPosts.map ((item:any, index: number) => {
             return (
-             <div className={styles["article-item"]} key={item.slug}>
-              <div className="info">
-                <div className="date">
-                  {item.date}
-                </div>
-                <div className="catagory">
-                  {item.tags}
-                </div>
-              </div>
-              <div className={styles.title}>
+               <Box w="46%" key={index}>
+              <Box >
+                <Box display="flex" justifyContent="space-between">
+                  <Box>{item.date}</Box>
+                  <Tag>{item.catagory}</Tag>
+                </Box>
+              </Box>
+              <Box fontSize="1.6em" fontWeight="bold">
                 <Link href={`/blog/${item.slug}`}>{item.title}</Link> 
-                </div>
-              <div className={styles.desc}>
+              </Box>
+              <Box lineHeight="2em">
                 {item.expert}
-              </div>
-            </div>
+              </Box>
+            </Box>
             )
           })
         }
-      </div>
-    </div>
+        </Box>
+        <Box w="26%" lineHeight="2.2em">
+          <Box pb="1em" className="title">All tags</Box>
+          <Tag mr=".5em">vim</Tag>
+          <Tag mr=".5em">Nodejs</Tag>
+          <Tag mr=".5em">Nodejs</Tag>
+          <Tag mr=".5em">Nodejs</Tag>
+          <Tag mr=".5em">React</Tag>
+          <Tag>Redux</Tag>
+        </Box>
+      </Container>
+    </Box>
   )
 }
 export default BlogPage;
