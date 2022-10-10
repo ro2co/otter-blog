@@ -4,6 +4,7 @@ import Head from "next/head"
 import type { AppProps } from 'next/app'
 import Layout from '../common/layout'
 import { ChakraProvider} from '@chakra-ui/react'
+import 'highlight.js/styles/monokai.css';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -15,9 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={customTheme}>
       <Layout>
           <Component {...pageProps} />
-          
       </Layout>
-      
     </ChakraProvider>
     </>
 }

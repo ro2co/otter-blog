@@ -14,7 +14,7 @@ const Footer =()=>{
       p="0"
     >
       <Box>
-       代码之路 code2road.me
+        code2road.me All Right reserved @2019
       </Box>
       <Box>
         <button onClick={toggleColorMode}>
