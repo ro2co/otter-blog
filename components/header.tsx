@@ -19,7 +19,6 @@ const searchStyle = css`
   border: none;
   border-color:  whiteAlpha.400;
   transition: width 0.5s;
-  background: #394150 ;
   &:focus {
     width: 25em;
   }
@@ -27,6 +26,7 @@ const searchStyle = css`
 
 const Header =()=>{
   const {colorMode} = useColorMode()
+  const searchBgColor= colorMode === "light" ? "#fff" : "#394150"
   return (
     <Box  mb="2em">
       <Container p="1.5em 0">
@@ -41,13 +41,12 @@ const Header =()=>{
             </Link>
             <Box display="inline" width="300px" fontSize="0.8em" pl="2em" css={style}>
               <Link href="/blog"> 博客 </Link>
-              <Link href="/archives"> 归档 </Link>
-              <Link href="/playground"> playground </Link>
+              <Link href="/tags"> Tags </Link>
               <Link href="/about"> 关于</Link>
             </Box>
           </Box>
           <Box pt=".3em">
-            <Input size="sm" css={searchStyle}/>
+            <Input size="sm" bg={searchBgColor} css={searchStyle}/>
             <SearchIcon css={btnStyle} ml="1em"/>
           </Box>
         </Box>
