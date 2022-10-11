@@ -2,6 +2,7 @@ import {Container, Box, Input} from "@chakra-ui/react"
 import Link from "next/link"
 import { css, jsx} from '@emotion/react';
 import {SearchIcon} from '@chakra-ui/icons'
+import {useColorMode } from "@chakra-ui/react"
 
 const style = css`
   a {
@@ -25,9 +26,10 @@ const searchStyle = css`
 `
 
 const Header =()=>{
+  const {colorMode} = useColorMode()
   return (
     <Box  mb="2em">
-      <Container p="1.5em 0" borderBottomWidth="1px" borderBottomColor="whiteAlpha.200">
+      <Container p="1.5em 0">
         <Box display="flex" justifyContent="space-between">
           <Box fontSize="1.4em" fontWeight="bold">
             <Link href="/">
