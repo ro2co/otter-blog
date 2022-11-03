@@ -3,6 +3,7 @@ import Link from "next/link"
 import { css, jsx} from '@emotion/react';
 import {SearchIcon} from '@chakra-ui/icons'
 import {useColorMode } from "@chakra-ui/react"
+import Search from './search'
 
 const style = css`
   a {
@@ -40,15 +41,12 @@ const Header =()=>{
               </a> 
             </Link>
             <Box display="inline" width="300px" fontSize="0.8em" pl="2em" css={style}>
-              <Link href="/blog"> 博客 </Link>
+              <Link href="/blog"> Blog </Link>
               <Link href="/tags"> Tags </Link>
-              <Link href="/about"> 关于</Link>
+              <Link href="/about"> About</Link>
             </Box>
           </Box>
-          <Box pt=".3em">
-            <Input size="sm" bg={searchBgColor} css={searchStyle}/>
-            <SearchIcon css={btnStyle} ml="1em"/>
-          </Box>
+          <Search />
         </Box>
       </Container>
     </Box>
