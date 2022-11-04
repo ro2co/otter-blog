@@ -1,5 +1,5 @@
 import {Button, Heading, Code, Container} from '@chakra-ui/react';
-import {Sandpack} from '@codesandbox/sandpack-react'
+import {Sandpack} from '@codesandbox/sandpack-react';
 
 const MDXComponents = {
     h1: (props:any) => <Heading as="h1" size="xl" my={4} {...props} />,
