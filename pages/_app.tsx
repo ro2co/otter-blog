@@ -8,6 +8,7 @@ import 'highlight.js/styles/monokai.css';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const getLayout = Component.getLayout || ((page) => page)
   return <>
     <Head>
       <title>Code2Road</title>
@@ -15,7 +16,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Head>
     <ChakraProvider theme={customTheme}>
       <Layout>
-          <Component {...pageProps} />
+        {/*<Component {...pageProps} />*/}
+        {getLayout(<Component {...pageProps} />)}
       </Layout>
     </ChakraProvider>
     </>

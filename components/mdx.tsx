@@ -1,5 +1,6 @@
 import {Button, Heading, Code, Container} from '@chakra-ui/react';
 import {Sandpack} from '@codesandbox/sandpack-react';
+import {MDXRemote} from "next-mdx-remote"
 
 const MDXComponents = {
     h1: (props:any) => <Heading as="h1" size="xl" my={4} {...props} />,
@@ -17,3 +18,14 @@ const MDXComponents = {
   Container
 }
 export default MDXComponents
+
+export const MDXLayout = ({layout, content, ...rest}: any) => {
+    const Layout = require(`../layouts/${layout}`).default
+    return (
+      <Layout>
+            <MDXRemote {...content} components={MDXComponents} />
+      </Layout>
+    )
+    
+}
+

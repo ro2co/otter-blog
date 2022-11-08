@@ -2,7 +2,7 @@ import { Container, Tag, Box } from "@chakra-ui/react"
 import fs from 'fs'
 import {join} from 'path'
 import matter from 'gray-matter'
-import ArticleItem from "./article-item"
+import ArticleItem from "../../components/article-item"
 
 export async function getStaticProps() {
   const files = fs.readdirSync(join('posts'));
@@ -25,7 +25,7 @@ const BlogPage = (props: any) =>{
           <Box className="title" pb="1em"  w="100%">Articles</Box>
             {
               props.metaPosts.map ((item:any, index: number) => {
-                return <ArticleItem item={item} index={index} />
+                return <ArticleItem item={item} key={index} />
               })
             }
         </Box>

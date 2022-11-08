@@ -1,12 +1,12 @@
 import {useColorMode, Tag, Box } from "@chakra-ui/react"
 import Link from "next/link"
 
-const ArticleItem = ({item, index}: {item: any, index: number}) =>{
+const ArticleItem = ({item}: {item: any}) =>{
 
   const {colorMode} = useColorMode()
   const tagBgColor = colorMode === "light" ? "#FFBD2F" : "#54a23d"
   return (
-    <Box w={["100%","46%"]} key={index} mb="3em">
+    <Box w={["100%","46%"]} mb="3em">
       <Box>
         <Box display="flex" justifyContent="space-between" pb=".8em">
           <Box color="#68757B">{item.date}</Box>

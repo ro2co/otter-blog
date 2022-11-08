@@ -34,19 +34,34 @@ const noResultStyle = css`
 `
 
 const Search = () =>{
-  const [filterRows, setFilterRows] = useState()
+  const [filterRows, setFilterRows] = useState<any>([])
   const [isOpen, setOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>("")
   const handleChange = (e:any)=>{
-    setInputValue(e.target.value)
-    console.log(e.target.value)
+    const str = e.target.value;
+    setInputValue(str)
+    if (str === "") {
+      console.log("223333333")
+      setFilterRows([])
+    } else {
+      console.log("11111111000001")
+      const arr: any[] = []
+      searchData.forEach((item) => {
+        if(item.title.includes(str)) {
+          arr.push(item)
+        }
+      })
+      console.log({arr})
+      setFilterRows(arr)
+    }
   }
   const handleFocus = () =>{
-      setOpen(true)
+    setOpen(true)
   }
   const handleBlur = () => {
     setOpen(false)
     setInputValue("")
+    setFilterRows([])
   }
   const handleMouseOver = (e: any)=>{
     console.log("click")
@@ -70,6 +85,7 @@ const Search = () =>{
       </Box>
       <Box className="result" opacity={isOpen ? 1 : 0} height={isOpen ? '3em': "0"} width={isOpen ? "26em": "16em"}>
         <Box maxHeight="400px" bg="pink" display={isOpen ? "block": "none"} onMouseDown={handleMouseOver}> 
+            {JSON.stringify(filterRows)}
         </Box>
       </Box>
     </Box>

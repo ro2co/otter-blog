@@ -1,37 +1,25 @@
 import fs from 'fs'
 import path from 'path'
 import {Container, Box} from "@chakra-ui/react"
-import { useEffect } from 'react'
-import matter from 'gray-matter'
-import {marked} from 'marked'
-import MarkNav from 'markdown-navbar';
-import hljs from 'highlight.js'
+import { MDXRemote } from 'next-mdx-remote'
+import { serialize } from 'next-mdx-remote/serialize'
 
-const DetailPage = ({title, content}:  any) =>{
+import {getFileBySlug} from '../../utils/files'
+import Component from  '../../components/mdx'
+import {MDXLayout} from '../../components/mdx'
 
-  useEffect(()=>{
-    marked.setOptions({
-      langPrefix: "hljs language-",
-      highlight: function(code) {
-        return hljs.highlightAuto(code, ["html", "javascript"]).value;
-      }
-    })
-  },[]);
+const DetailPage = ({title,date,layout, content}:  any) =>{
+
   return <Container p="1.2em 0">
     <Box textAlign="center" fontSize="2em">{title}</Box>
+    <Box>{date}</Box>
     <Box lineHeight="2em">
       {
       content && 
-       <div dangerouslySetInnerHTML={{__html: marked(content)}}></div>
-      //<div>{content}</div>
+        <div className="content">       
+          <MDXLayout content={content} layout={layout} />
+        </div>
       }
-      <div>
-          <MarkNav
-          className="article-menu"
-          source={content}
-          headingTopOffset={80}
-        />
-      </div>
     </Box>
   </Container>
 }
@@ -40,14 +28,13 @@ export async function getStaticProps(context: any) {
   const {params} = context;
   const {slug} = params;
   const _slug = slug.replaceAll("-", "_") 
-  const configDirectory = path.resolve(process.cwd(), "posts");
   const suffix = _slug.split(".").pop() === 'md' ? "" : ".md";
-  console.log(1111111, suffix)
-  const markdownFile = fs.readFileSync(path.join(configDirectory, _slug+suffix, ))
-  console.log(22,matter(markdownFile))
-  const {content, data} = matter(markdownFile); 
-  const {title, date} = data;
-  return { props: {params, content, title, date} };
+  
+  const {data,content} = getFileBySlug('posts',slug+suffix)
+  const mdxSource = await serialize(content)
+
+  const {title, date, layout} = data;
+  return { props: {params, content: mdxSource, title, date, layout} };
 }
 
 export async function getStaticPaths() {
