@@ -1,11 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 import {Container, Box} from "@chakra-ui/react"
-import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 import {getFileBySlug} from '../../utils/files'
-import Component from  '../../components/mdx'
 import {MDXLayout} from '../../components/mdx'
 
 const DetailPage = ({title,date,layout, content}:  any) =>{

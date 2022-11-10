@@ -21,7 +21,7 @@ export async function getStaticProps({params} :any) {
   const frontmatter = getAllFiles("posts")
   frontmatter.forEach(post=>{
     console.log(23, post.tags);
-    post.tags.split(",").map((tag:string)=> {
+    post.tags?.split(",").map((tag:string)=> {
       if(tag === params.tag) {
         temp.push(post)
       }

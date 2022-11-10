@@ -2,7 +2,7 @@ import '../styles/global.css'
 import {customTheme} from '../styles/theme'
 import Head from "next/head"
 import type { AppProps } from 'next/app'
-import Layout from '../components/layout'
+import Layout from '@/layouts/index'
 import { ChakraProvider} from '@chakra-ui/react'
 import 'highlight.js/styles/monokai.css';
 

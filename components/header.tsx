@@ -1,7 +1,6 @@
 import {Container, Box, Input} from "@chakra-ui/react"
 import Link from "next/link"
 import { css, jsx} from '@emotion/react';
-import {SearchIcon} from '@chakra-ui/icons'
 import {useColorMode } from "@chakra-ui/react"
 import Search from './search'
 
@@ -11,23 +10,9 @@ const style = css`
     font-weight: 400;
   }
 `
-const btnStyle = css`
-  cursor: pointer;
-`
-const searchStyle = css`
-  width: 21em;
-  border-radius: 0.5em;
-  border: none;
-  border-color:  whiteAlpha.400;
-  transition: width 0.5s;
-  &:focus {
-    width: 25em;
-  }
-`
 
 const Header =()=>{
   const {colorMode} = useColorMode()
-  const searchBgColor= colorMode === "light" ? "#fff" : "#394150"
   return (
     <Box  mb="2em">
       <Container p="1.5em 0">
