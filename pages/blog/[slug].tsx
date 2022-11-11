@@ -3,7 +3,7 @@ import path from 'path'
 import {Container, Box} from "@chakra-ui/react"
 import { serialize } from 'next-mdx-remote/serialize'
 
-import {getFileBySlug} from '@/libs/utils'
+import {getFiles,getFileBySlug} from '@/libs/utils'
 import {MDXLayout} from '@/components/mdx'
 
 const DetailPage = ({title,date,layout, content}:  any) =>{
@@ -36,7 +36,7 @@ export async function getStaticProps(context: any) {
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join('posts'));
+  const files = getFiles("posts")
   console.log({files})
   //const posts = files.map((file:any)=> {
   //  return file.replaceAll(" ", "-")

@@ -3,7 +3,7 @@ import {Box, Input} from "@chakra-ui/react"
 import { SearchIcon } from "@chakra-ui/icons"
 import {css} from "@emotion/react"
 import {useColorMode } from "@chakra-ui/react"
-import searchData from '../search.json'
+import searchData from '../data/search.json'
 
 
 const btnStyle = css`

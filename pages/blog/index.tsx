@@ -4,12 +4,13 @@ import {join} from 'path'
 import matter from 'gray-matter'
 import ArticleItem from "@/components/article-item"
 import usePagination from "@/libs/hooks"
+import {getFiles} from "@/libs/utils"
 
 const itemsPerPage = 6;
 export async function getStaticProps() {
-  const files = fs.readdirSync(join('posts'));
+  const files = getFiles('posts');
   const posts = files.map((filename)=> {
-    const markdownWithMeta = fs.readFileSync(join("posts", filename), 'utf-8')
+    const markdownWithMeta = fs.readFileSync(join("data","posts",filename), 'utf-8')
     console.log({markdownWithMeta})
     const {data: metaPosts} = matter(markdownWithMeta)
     metaPosts.slug = metaPosts.title.replaceAll(" ", "-")

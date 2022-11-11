@@ -12,7 +12,7 @@ posts
 # next.js
 /.next/
 /out/
-
+/data/
 # production
 /build
 
