@@ -3,8 +3,8 @@ import path from 'path'
 import {Container, Box} from "@chakra-ui/react"
 import { serialize } from 'next-mdx-remote/serialize'
 
-import {getFileBySlug} from '../../utils/files'
-import {MDXLayout} from '../../components/mdx'
+import {getFileBySlug} from '@/libs/utils'
+import {MDXLayout} from '@/components/mdx'
 
 const DetailPage = ({title,date,layout, content}:  any) =>{
 
@@ -31,7 +31,7 @@ export async function getStaticProps(context: any) {
   const {data,content} = getFileBySlug('posts',slug+suffix)
   const mdxSource = await serialize(content)
 
-  const {title, date, layout} = data;
+  const {title, date, layout="single"} = data;
   return { props: {params, content: mdxSource, title, date, layout} };
 }
 

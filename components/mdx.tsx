@@ -19,13 +19,12 @@ const MDXComponents = {
 }
 export default MDXComponents
 
-export const MDXLayout = ({layout, content, ...rest}: any) => {
-    const Layout = require(`../layouts/${layout}`).default
-    return (
-      <Layout>
-            <MDXRemote {...content} components={MDXComponents} />
-      </Layout>
-    )
-    
+export const MDXLayout = ({layout="single", content, ...rest}: any) => {
+  const Layout = require(`../layouts/${layout}`).default
+  return (
+    <Layout>
+      <MDXRemote {...content} components={MDXComponents} />
+    </Layout>
+  )
 }
 

@@ -2,8 +2,8 @@ import { Container, Tag, Box,Button } from "@chakra-ui/react"
 import fs from 'fs'
 import {join} from 'path'
 import matter from 'gray-matter'
-import ArticleItem from "../../components/article-item"
-import usePagination from "../../libs/hooks"
+import ArticleItem from "@/components/article-item"
+import usePagination from "@/libs/hooks"
 
 const itemsPerPage = 6;
 export async function getStaticProps() {

@@ -8,14 +8,6 @@ export  function getFiles (folder: string) {
    return fs.readdirSync(path.join(root, folder))
 }
 
-export  function getFileBySlug(folder: string, slug: string) {
-  const source = fs.readFileSync(path.join(root, folder, slug), 'utf-8')
-  const { data, content } = matter(source)
-  console.log("233", data)
-  return {data, content}
-}
-
-
 export  function getAllFiles(folder: string) {
   //获取所有文章 frontMatter
   const files = getFiles(folder);
@@ -28,6 +20,14 @@ export  function getAllFiles(folder: string) {
   cacheFiles(matterFiles)
   return matterFiles;
 }
+
+export  function getFileBySlug(folder: string, slug: string) {
+  const source = fs.readFileSync(path.join(root, folder, slug), 'utf-8')
+  const { data, content } = matter(source)
+  console.log("233", data)
+  return {data, content}
+}
+
 
 export function getAllTags(folder: string) {
   // 获取所有tags 

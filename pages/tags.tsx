@@ -1,7 +1,7 @@
 import {Container, Box, Flex} from "@chakra-ui/react"
 import Link from "next/link"
 import {css} from "@emotion/react"
-import {getAllTags} from "../utils/files"
+import {getAllTags} from "@/libs/utils"
 
 export async function getStaticProps() {
   const tagsCount = getAllTags("posts")

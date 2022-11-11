@@ -1,7 +1,6 @@
 import { Container, Tag, Box } from "@chakra-ui/react"
-import ArticleItem from "../../components/article-item"
-import {getAllTags, getAllFiles} from "../../utils/files"
-
+import ArticleItem from "@/components/article-item"
+import {getAllTags, getAllFiles} from "@/libs/utils"
 
 export async function getStaticPaths() {
   const tags = getAllTags("posts")
@@ -13,8 +12,8 @@ export async function getStaticPaths() {
     })),
     fallback: false,
   }
-
 }
+
 export async function getStaticProps({params} :any) {
   console.log({params})
   const temp:any = [];
@@ -39,7 +38,7 @@ const TagPage = (props:any) => {
           <Box className="title" pb="1em"  w="100%">Articles</Box>
             {
               props.metaPosts?.map ((item:any, index: number) => {
-                return <ArticleItem item={item} index={index} key={index} />
+                return <ArticleItem item={item} key={index} />
               })
             }
         </Box>
