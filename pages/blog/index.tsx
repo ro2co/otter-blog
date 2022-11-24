@@ -1,15 +1,18 @@
 import { Container, Tag, Box,Button } from "@chakra-ui/react"
 import fs from 'fs'
-import {join} from 'path'
+import {join, extname} from 'path'
 import matter from 'gray-matter'
 import ArticleItem from "@/components/article-item"
 import usePagination from "@/libs/hooks"
 import {getFiles} from "@/libs/utils"
 
-const itemsPerPage = 6;
+const itemsPerPage = 10;
 export async function getStaticProps() {
   const files = getFiles('posts');
   const posts = files.map((filename)=> {
+    if (extname(filename) !== ".md") {
+      return 
+    }
     const markdownWithMeta = fs.readFileSync(join("data","posts",filename), 'utf-8')
     console.log({markdownWithMeta})
     const {data: metaPosts} = matter(markdownWithMeta)
@@ -17,10 +20,10 @@ export async function getStaticProps() {
     metaPosts._date = new Date(metaPosts.date).getTime()
     return metaPosts
   })
-  return { props: { metaPosts: posts.sort((a, b)=> a._date - b._date)} };
+  return { props: { metaPosts: posts.sort((a, b)=> b!._date - a!._date)} };
 }
 function BlogList({data}: any) {
-  const {currentPage, currentData, handlePrev, handleNext} = usePagination(data, itemsPerPage)
+  const { currentData, handlePrev, handleNext} = usePagination(data, itemsPerPage)
   return <>
       {
         currentData().map ((item:any, index: number) => {
@@ -38,7 +41,7 @@ const BlogPage = (props: any) =>{
   return (
     <Box minH="850px">
       <Container display="flex" flexWrap={["nowrap", "wrap", "wrap"]} justifyContent="space-between" p="2em 0">
-        <Box w={["100%","100%", "100%", "68%"]} display="flex" flexWrap="wrap" justifyContent="space-between" padding={["1em", "1.21em", "0em"]}>
+        <Box w={["100%","100%", "100%", "68%"]} display="flex" flexWrap="wrap" justifyContent="space-between" padding={["1em", "1.21em", "1em", "0"]}>
           <Box className="title" pb="1em"  w="100%">Articles</Box>
           <BlogList data={props.metaPosts}/>
         </Box>

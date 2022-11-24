@@ -4,7 +4,8 @@ import Head from "next/head"
 import type { AppProps } from 'next/app'
 import Layout from '@/layouts/index'
 import { ChakraProvider} from '@chakra-ui/react'
-import 'highlight.js/styles/monokai.css';
+import 'prismjs/themes/prism-okaidia.min.css';
+//import 'prismjs/themes/prism-twilight.min.css';
 
 
 function MyApp({ Component, pageProps }: AppProps) {

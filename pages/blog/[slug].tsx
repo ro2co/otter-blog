@@ -2,8 +2,13 @@ import fs from 'fs'
 import path from 'path'
 import {Container, Box} from "@chakra-ui/react"
 import { serialize } from 'next-mdx-remote/serialize'
+import rehypeHighlight from 'rehype-highlight'
+import rehypePrism from '@mapbox/rehype-prism'
+import remarkToc from 'remark-toc'
+import rehypeSlug from 'rehype-slug'
 
 import {getFiles,getFileBySlug} from '@/libs/utils'
+
 import {MDXLayout} from '@/components/mdx'
 
 const DetailPage = ({title,date,layout, content}:  any) =>{
@@ -29,7 +34,15 @@ export async function getStaticProps(context: any) {
   const suffix = _slug.split(".").pop() === 'md' ? "" : ".md";
   
   const {data,content} = getFileBySlug('posts',slug+suffix)
-  const mdxSource = await serialize(content)
+  console.log({data})
+  const mdxSource = await serialize(content,{
+    mdxOptions: {
+      remarkPlugins: [remarkToc],
+      rehypePlugins: [rehypeSlug, rehypePrism]
+    }
+  })
+  console.log({mdxSource})
+
 
   const {title, date, layout="single"} = data;
   return { props: {params, content: mdxSource, title, date, layout} };
