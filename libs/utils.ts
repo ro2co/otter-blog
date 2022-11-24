@@ -13,8 +13,11 @@ export  function getAllFiles(folder: string) {
   const files = getFiles(folder);
   console.log(3444, files)
   const matterFiles = files.map((file)=> {
-      const {data: frontmatter} = getFileBySlug(folder, file)
-      return frontmatter 
+    if(path.extname(file)!==".md") {
+      return
+    }
+    const {data: frontmatter} = getFileBySlug(folder, file)
+    return frontmatter 
   })
   console.log({matterFiles})
   cacheFiles(matterFiles)
@@ -24,7 +27,7 @@ export  function getAllFiles(folder: string) {
 export  function getFileBySlug(folder: string, slug: string) {
   const source = fs.readFileSync(path.join(root, folder, slug), 'utf-8')
   const { data, content } = matter(source)
-  console.log("233", data)
+  // console.log("233", data)
   return {data, content}
 }
 

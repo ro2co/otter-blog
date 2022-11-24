@@ -4,7 +4,7 @@ const Single = ({children}:  any) =>{
 
   return <Container p="1.2em 0">
     <Box lineHeight="2em">
-        <div className="content">       
+        <div className="single-content">       
             {children}
         </div>
     </Box>
