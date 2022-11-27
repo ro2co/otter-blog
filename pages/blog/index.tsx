@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 import ArticleItem from "@/components/article-item"
 import usePagination from "@/libs/hooks"
 import {getFiles} from "@/libs/utils"
+import {useRouter} from 'next/router'
 
 const itemsPerPage = 10;
 export async function getStaticProps() {
@@ -14,7 +15,6 @@ export async function getStaticProps() {
       return 
     }
     const markdownWithMeta = fs.readFileSync(join("data","posts",filename), 'utf-8')
-    console.log({markdownWithMeta})
     const {data: metaPosts} = matter(markdownWithMeta)
     metaPosts.slug = metaPosts.title.replaceAll(" ", "-")
     metaPosts._date = new Date(metaPosts.date).getTime()
@@ -23,7 +23,24 @@ export async function getStaticProps() {
   return { props: { metaPosts: posts.sort((a, b)=> b!._date - a!._date)} };
 }
 function BlogList({data}: any) {
-  const { currentData, handlePrev, handleNext} = usePagination(data, itemsPerPage)
+
+  const router = useRouter()
+  let currentPage: number = 1;
+  if(router.asPath.split("?").length>1) {
+     currentPage = parseInt(router.asPath.split("?")[1].split("=")[1])
+  }  
+  console.log(1234,currentPage)
+  //useEffect(()=>{
+  //  if (router.asPath !== router.route) {
+  //     console.log(4321, router.query) 
+  //  }
+  //},[router])
+  const pagination = {
+      itemsPerPage,
+      currentPage
+  }
+  const { currentData, handlePrev, handleNext} = usePagination(data, pagination)
+
   return <>
       {
         currentData().map ((item:any, index: number) => {

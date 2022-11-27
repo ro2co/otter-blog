@@ -2,10 +2,11 @@ import fs from 'fs'
 import path from 'path'
 import {Container, Box} from "@chakra-ui/react"
 import { serialize } from 'next-mdx-remote/serialize'
-import rehypeHighlight from 'rehype-highlight'
 import rehypePrism from '@mapbox/rehype-prism'
 import remarkToc from 'remark-toc'
 import rehypeSlug from 'rehype-slug'
+import Giscus from '@giscus/react';
+
 
 import {getFiles,getFileBySlug} from '@/libs/utils'
 
@@ -21,8 +22,27 @@ const DetailPage = ({title,date,layout, content}:  any) =>{
       content && 
         <div className="content">       
           <MDXLayout content={content} layout={layout} />
+        
         </div>
       }
+      <Box w="68%">
+        <Giscus
+          id="comments"
+          repo="ro2co/road2code-blog"
+          repoId="R_kgDOIgXjjQ"
+          category="Announcements"
+          categoryId="DIC_kwDOIgXjjc4CSxEj"
+          mapping="pathname"
+          term="Welcome to @giscus/react component!"
+          reactionsEnabled="1"
+          emitMetadata="0"
+          inputPosition="top"
+          theme="transparent_dark"
+          lang="zh-CN"
+          loading="lazy"
+        />
+
+      </Box>
     </Box>
   </Container>
 }
@@ -42,7 +62,6 @@ export async function getStaticProps(context: any) {
     }
   })
   console.log({mdxSource})
-
 
   const {title, date, layout="single"} = data;
   return { props: {params, content: mdxSource, title, date, layout} };
