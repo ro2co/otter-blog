@@ -36,15 +36,18 @@ body {
 }
 .single-content>h2+ul {
   position: sticky;
-  width: 240px;
+  width: 300px;
   top: 50px;
   float: right;
   margin-right: -320px;
 }
 .content ul  li{
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
+.article-img {
+  padding-bottom: 1em;
+}
 h2 {
   font-size: 2em !important;
   padding: 1em 0;

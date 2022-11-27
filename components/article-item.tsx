@@ -1,8 +1,7 @@
 import {useColorMode, Tag, Box } from "@chakra-ui/react"
 import Link from "next/link"
-
-const ArticleItem = ({item}: {item: any}) =>{
-
+import {ListItemProps} from "@/components/types"
+const ArticleItem = ({item}: {item: ListItemProps}) =>{
   const {colorMode} = useColorMode()
   const tagBgColor = colorMode === "light" ? "#FFBD2F" : "#54a23d"
   return (

@@ -37,8 +37,8 @@ const Search = () =>{
   const [filterRows, setFilterRows] = useState<any>([])
   const [isOpen, setOpen] = useState<boolean>(false)
   const [inputValue, setInputValue] = useState<string>("")
-  const handleChange = (e:any)=>{
-    const str = e.target.value;
+  const handleChange = (e:React.FormEvent<HTMLInputElement>)=>{
+    const str =  (e.target as HTMLInputElement).value;
     setInputValue(str)
     if (str === "") {
       console.log("223333333")
@@ -63,9 +63,8 @@ const Search = () =>{
     setInputValue("")
     setFilterRows([])
   }
-  const handleMouseOver = (e: any)=>{
-    console.log("click")
-     e.preventDefault();
+  const handleMouseOver = (e: React.MouseEvent<HTMLInputElement>)=>{
+    e.preventDefault();
   }
   const {colorMode} = useColorMode()
   const searchBgColor= colorMode === "light" ? "#fff" : "#394150"
