@@ -1,8 +1,11 @@
 import '../styles/global.css'
 import {customTheme} from '../styles/theme'
 import { ReactNode } from 'react';
+
 import Head from "next/head"
+import type { AppProps } from 'next/app'
 import { NextPage } from "next";
+
 import Layout from '@/layouts/index'
 import { ChakraProvider} from '@chakra-ui/react'
 import 'prismjs/themes/prism-okaidia.min.css';
