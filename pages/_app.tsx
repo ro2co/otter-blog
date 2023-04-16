@@ -1,15 +1,24 @@
 import '../styles/global.css'
 import {customTheme} from '../styles/theme'
+import { ReactNode } from 'react';
 import Head from "next/head"
-import type { AppProps } from 'next/app'
+import { NextPage } from "next";
 import Layout from '@/layouts/index'
 import { ChakraProvider} from '@chakra-ui/react'
 import 'prismjs/themes/prism-okaidia.min.css';
 //import 'prismjs/themes/prism-twilight.min.css';
 
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const getLayout = Component.getLayout || ((page) => page)
+type Page<P = {}> = NextPage<P> & {
+  getLayout?: (page: ReactNode) => ReactNode;
+};
+
+type Props = AppProps & {
+  Component: Page;
+};
+
+function MyApp({ Component, pageProps }: Props) {
+  const getLayout = Component.getLayout || ((page: ReactNode) => page)
   return <>
     <Head>
       <title>Code2Road</title>
