@@ -3,7 +3,7 @@ import ArticleItem from "@/components/article-item"
 import {getAllTags, getAllFiles} from "@/libs/utils"
 
 export async function getStaticPaths() {
-  const tags = getAllTags("posts")
+  const tags = await getAllTags("posts")
   return {
     paths: Object.keys(tags).map((tag) => ({
       params: {
@@ -19,8 +19,7 @@ export async function getStaticProps({params} :any) {
   const temp:any = [];
   const frontmatter = getAllFiles("posts")
   frontmatter.forEach(post=>{
-    console.log(23, post.tags);
-    post.tags?.split(",").map((tag:string)=> {
+    post?.tags?.split(",").map((tag:string)=> {
       if(tag === params.tag) {
         temp.push(post)
       }
