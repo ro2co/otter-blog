@@ -9,9 +9,7 @@ linkedin: https://www.linkedin.com
 github: https://github.com
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
-
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+Hello , 我是road2code。我是一位热爱技术开发的工程师，我喜欢探索新技术和工具，并且乐于将它们应用到我的项目中，以提高用户体验和开发效率。我使用基于 chatgpt api 制作的ai 工具网站已上线多时，并为很多用户提供稳定而快速的服务，如有需要注册，请联系我（微信：eXdjbTY1Mjc=）
+另一方面我也喜欢研究事物的本质原理，比如我在学习南京大学蒋岩炎的操作系统原理课和 go 语言。
+这个博客是自己使用 Nextjs 和 Chakra-ui 开发，移动端仍在完善中，谢谢。
 
