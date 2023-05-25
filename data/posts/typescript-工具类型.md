@@ -47,13 +47,10 @@ type NonNullable<T> = T extends null | undefined ? Never : T
 
 
 
-T 集合中的值来自于 null ｜ 和 undefined 并且等于unefined 时，为 never ，否则
+T 集合中的值来自于 null ｜ 和 undefined 并且等于unefined 时，为 never ，否则结果类型就是 T
 
-Required / Partial
-
-Readonly/
-
-
+这就意味着，当你把一个可能包含 null 或 undefined 的类型赋给 NonNullable<T> 时，它会移除 null 和 undefined，只留下其他部分。
+例如，如果你有一个类型 T 是 string | null | undefined，那么 NonNullable<T> 就会是 string。
 
 
 
